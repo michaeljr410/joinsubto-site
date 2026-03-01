@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join SubTo With Mike Davis — Creative Finance, Structured Differently</title>
-    <meta name="description" content="Mike Davis shares why he joined SubTo, what changed, and why proximity beats information in creative finance.">
+    <title>Join SubTo With Mike Davis — Creative Finance Community for Real Estate, Business & Vehicles</title>
+    <meta name="description" content="Mike Davis shares his 4+ year SubTo journey and why creative finance community beats YouTube University. Join SubTo for real estate, business, and vehicle deals structured on terms, not price.">
+    <meta name="keywords" content="creative finance, subject-to, seller finance, SubTo community, real estate investing, creative acquisitions, terms over price, Mike Davis, vehicle deals, business acquisitions, seller financing, wrap mortgages">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Join SubTo With Mike Davis — Creative Finance, Structured Differently">
+    <meta property="og:description" content="4+ years inside SubTo. Hundreds of thousands generated across real estate, vehicles, and business. Here's why proximity beats information.">
+    <meta property="og:type" content="website">
+    <!-- UPDATE: Set your actual URL -->
+    <meta property="og:url" content="https://joinsubto-site.vercel.app">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Join SubTo With Mike Davis">
+    <meta name="twitter:description" content="Creative finance is a lens, not an asset class. Here's why I've been inside SubTo for 4+ years.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* ============================================
-           RESET & BASE
-           ============================================ */
+        /* =============================================
+           RESET & VARIABLES
+           ============================================= */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -19,1225 +34,500 @@
             --bg-dark-warm: #13110F;
             --bg-dark-deep: #080808;
             --bg-light: #F2EDE8;
-            --bg-light-alt: #E8E0D8;
+            --bg-light-alt: #EAE3DB;
             --accent: #C49A6C;
             --accent-hover: #D4AA7C;
             --accent-dim: #8B7355;
             --accent-glow: rgba(196, 154, 108, 0.15);
+            --green: #6B9E78;
+            --green-dim: rgba(107, 158, 120, 0.12);
+            --red: #C0796B;
+            --red-dim: rgba(192, 121, 107, 0.12);
             --text-light: #E8E0D8;
             --text-light-dim: #9B918A;
             --text-dark: #1A1714;
             --text-dark-dim: #6B6259;
-            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'Space Grotesk', 'SF Mono', monospace;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --mono: 'Space Grotesk', monospace;
         }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            background: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--sans); background: var(--bg-dark); color: var(--text-light); line-height: 1.7; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg-dark); }
         a { color: inherit; text-decoration: none; }
-        img { max-width: 100%; display: block; }
 
-        /* ============================================
-           FILM GRAIN OVERLAY
-           ============================================ */
-        .grain {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 10000;
-            opacity: 0.035;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-            background-size: 256px 256px;
-        }
+        /* =============================================
+           UTILITIES
+           ============================================= */
+        .grain { position: fixed; inset: 0; pointer-events: none; z-index: 10000; opacity: 0.03; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 256px; }
+        .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 2px; background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-hover)); z-index: 10001; transition: width 0.1s linear; }
 
-        /* ============================================
-           READING PROGRESS BAR
-           ============================================ */
-        .progress-bar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 0%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-hover));
-            z-index: 10001;
-            transition: width 0.1s linear;
-        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; } .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; } .reveal-d5 { transition-delay: 0.5s; }
 
-        /* ============================================
-           CHAPTER NAV (Desktop Only)
-           ============================================ */
-        .chapter-nav {
-            position: fixed;
-            left: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
+        /* =============================================
+           CHAPTER NAV
+           ============================================= */
+        .ch-nav { position: fixed; left: 2rem; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 1.25rem; opacity: 0; transition: opacity 0.6s; }
+        .ch-nav.visible { opacity: 1; }
+        .ch-nav a { display: flex; align-items: center; gap: 0.75rem; color: var(--text-light-dim); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.4s; }
+        .ch-nav a .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-light-dim); transition: all 0.4s; flex-shrink: 0; }
+        .ch-nav a .lbl { opacity: 0; transform: translateX(-4px); transition: all 0.3s; white-space: nowrap; }
+        .ch-nav a:hover .lbl, .ch-nav a.active .lbl { opacity: 1; transform: translateX(0); }
+        .ch-nav a.active { color: var(--accent); }
+        .ch-nav a.active .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); transform: scale(1.5); }
 
-        .chapter-nav.visible { opacity: 1; }
-
-        .chapter-nav a {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-light-dim);
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            text-decoration: none;
-        }
-
-        .chapter-nav a .dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--text-light-dim);
-            transition: all 0.4s ease;
-            flex-shrink: 0;
-        }
-
-        .chapter-nav a .label {
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .chapter-nav a:hover .label,
-        .chapter-nav a.active .label {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .chapter-nav a.active {
-            color: var(--accent);
-        }
-
-        .chapter-nav a.active .dot {
-            background: var(--accent);
-            box-shadow: 0 0 8px var(--accent-glow);
-            transform: scale(1.5);
-        }
-
-        /* ============================================
+        /* =============================================
            NAV
-           ============================================ */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.5s ease;
-            background: transparent;
-        }
-
-        nav.scrolled {
-            background: rgba(12, 12, 12, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 0.875rem 2rem;
-            border-bottom: 1px solid rgba(196, 154, 108, 0.08);
-        }
-
-        .nav-name {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-light-dim);
-            transition: color 0.3s;
-        }
-
+           ============================================= */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.5s; background: transparent; }
+        nav.scrolled { background: rgba(12,12,12,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 0.75rem 2rem; border-bottom: 1px solid rgba(196,154,108,0.08); }
+        .nav-name { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light-dim); transition: color 0.3s; }
         .nav-name:hover { color: var(--accent); }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .nav-link { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light-dim); transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent); }
+        .nav-cta { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(196,154,108,0.3); padding: 0.45rem 1rem; border-radius: 4px; transition: all 0.3s; }
+        .nav-cta:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
+        /* =============================================
+           STICKY BOTTOM BAR
+           ============================================= */
+        .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(12,12,12,0.95); backdrop-filter: blur(20px); padding: 0.75rem 1.5rem; display: flex; justify-content: center; align-items: center; gap: 0.75rem; z-index: 999; transform: translateY(100%); transition: transform 0.5s ease; border-top: 1px solid rgba(196,154,108,0.1); }
+        .sticky-bar.visible { transform: translateY(0); }
+        .sticky-bar .bar-text { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light-dim); }
+        .sticky-bar .bar-btn { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 4px; transition: all 0.3s; }
+        .sticky-bar .bar-primary { background: var(--accent); color: var(--bg-dark); font-weight: 600; }
+        .sticky-bar .bar-primary:hover { background: var(--accent-hover); }
+        .sticky-bar .bar-secondary { color: var(--text-light-dim); border: 1px solid rgba(155,145,138,0.2); }
+        .sticky-bar .bar-secondary:hover { color: var(--accent); border-color: var(--accent); }
 
-        .nav-read-time {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-light-dim);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
+        /* =============================================
+           SECTION BASES
+           ============================================= */
+        section { position: relative; }
+        .s-dark { background: var(--bg-dark); color: var(--text-light); }
+        .s-dark-warm { background: var(--bg-dark-warm); color: var(--text-light); }
+        .s-light { background: var(--bg-light); color: var(--text-dark); }
+        .s-accent { background: linear-gradient(135deg, #1A1510, #1F1812, #1A1510); color: var(--text-light); }
 
-        nav.scrolled .nav-read-time { opacity: 1; }
+        .narrow { max-width: 680px; margin: 0 auto; padding: 6rem 2rem; }
+        .wide { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
 
-        .nav-cta {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid rgba(196, 154, 108, 0.3);
-            padding: 0.5rem 1.25rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
+        /* Chapter label */
+        .ch-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 1rem; }
+        .s-dark .ch-label, .s-dark-warm .ch-label, .s-accent .ch-label { color: var(--accent-dim); }
+        .s-light .ch-label { color: var(--text-dark-dim); }
+        .ch-label::after { content: ''; flex: 1; height: 1px; max-width: 60px; }
+        .s-dark .ch-label::after, .s-dark-warm .ch-label::after { background: rgba(196,154,108,0.2); }
+        .s-light .ch-label::after { background: rgba(26,23,20,0.1); }
 
-        .nav-cta:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            border-color: var(--accent);
-        }
+        /* Section headings */
+        .s-heading { font-family: var(--serif); font-size: clamp(1.65rem, 3.5vw, 2.5rem); font-weight: 500; line-height: 1.25; margin-bottom: 2rem; }
+        .s-light .s-heading { color: var(--text-dark); }
 
-        /* ============================================
-           HERO
-           ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Body text */
+        .sp { font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.5rem; }
+        .s-dark .sp, .s-dark-warm .sp, .s-accent .sp { color: var(--text-light-dim); }
+        .s-light .sp { color: var(--text-dark-dim); }
+        .sp strong { font-weight: 500; }
+        .s-dark .sp strong, .s-dark-warm .sp strong { color: var(--text-light); }
+        .s-light .sp strong { color: var(--text-dark); }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0.5;
-        }
+        /* Emphasis block */
+        .emph { font-family: var(--serif); font-size: 1.25rem; font-style: italic; line-height: 1.6; margin: 2rem 0; padding-left: 1.5rem; border-left: 2px solid var(--accent); }
+        .s-dark .emph, .s-dark-warm .emph { color: var(--text-light); }
+        .s-light .emph { color: var(--text-dark); }
 
-        .hero-rule {
-            width: 40px;
-            height: 1px;
-            background: var(--accent);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: ruleIn 1s ease 0.3s forwards;
-        }
+        /* Pull quote */
+        .pull { font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 1.85rem); font-weight: 400; line-height: 1.5; text-align: center; padding: 2.5rem 1rem; margin: 1.5rem 0; position: relative; }
+        .pull::before, .pull::after { content: ''; display: block; width: 30px; height: 1px; background: var(--accent); margin: 0 auto; }
+        .pull::before { margin-bottom: 1.25rem; }
+        .pull::after { margin-top: 1.25rem; }
+        .s-dark .pull { color: var(--text-light); }
+        .s-light .pull { color: var(--text-dark); }
 
-        .hero-label {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.5s forwards;
-        }
-
-        .hero h1 {
-            font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 500;
-            line-height: 1.15;
-            max-width: 800px;
-            margin-bottom: 2rem;
-            color: var(--text-light);
-            opacity: 0;
-            animation: fadeUp 1s ease 0.7s forwards;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        .hero-sub {
-            font-size: 1.05rem;
-            color: var(--text-light-dim);
-            max-width: 560px;
-            line-height: 1.8;
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 1s forwards;
-        }
-
-        .hero-scroll {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 1.4s forwards;
-        }
-
-        .hero-scroll span {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-light-dim);
-        }
-
-        .hero-scroll .line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            animation: scrollPulse 2s ease infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-
-        /* ============================================
-           SECTIONS — SHARED
-           ============================================ */
-        section {
-            position: relative;
-        }
-
-        .section-dark {
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        .section-dark-warm {
-            background: var(--bg-dark-warm);
-            color: var(--text-light);
-        }
-
-        .section-light {
-            background: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        .section-accent {
-            background: linear-gradient(135deg, #1A1510, #1F1812, #1A1510);
-            color: var(--text-light);
-        }
-
-        .content-narrow {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 7rem 2rem;
-        }
-
-        .content-wide {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 7rem 2rem;
-        }
-
-        /* Chapter Label */
-        .chapter-label {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-dark .chapter-label,
-        .section-dark-warm .chapter-label,
-        .section-accent .chapter-label { color: var(--accent-dim); }
-        .section-light .chapter-label { color: var(--text-dark-dim); }
-
-        .chapter-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            max-width: 60px;
-        }
-
-        .section-dark .chapter-label::after,
-        .section-dark-warm .chapter-label::after,
-        .section-accent .chapter-label::after { background: rgba(196, 154, 108, 0.2); }
-        .section-light .chapter-label::after { background: rgba(26, 23, 20, 0.1); }
-
-        /* Chapter Heading */
-        .chapter-heading {
-            font-family: var(--font-serif);
-            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-            font-weight: 500;
-            line-height: 1.25;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-light .chapter-heading { color: var(--text-dark); }
-
-        /* Body Paragraphs */
-        .story-p {
-            font-size: 1.05rem;
-            line-height: 1.85;
-            margin-bottom: 1.75rem;
-        }
-
-        .section-dark .story-p,
-        .section-dark-warm .story-p,
-        .section-accent .story-p { color: var(--text-light-dim); }
-        .section-light .story-p { color: var(--text-dark-dim); }
-
-        .story-p strong {
-            font-weight: 500;
-        }
-
-        .section-dark .story-p strong,
-        .section-dark-warm .story-p strong,
-        .section-accent .story-p strong { color: var(--text-light); }
-        .section-light .story-p strong { color: var(--text-dark); }
-
-        /* Emphasis Line */
-        .story-emphasis {
-            font-family: var(--font-serif);
-            font-size: 1.35rem;
-            font-style: italic;
-            line-height: 1.6;
-            margin: 2.5rem 0;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--accent);
-        }
-
-        .section-dark .story-emphasis,
-        .section-dark-warm .story-emphasis { color: var(--text-light); }
-        .section-light .story-emphasis { color: var(--text-dark); }
-
-        /* Pull Quote */
-        .pull-quote {
-            font-family: var(--font-serif);
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            font-weight: 400;
-            line-height: 1.5;
-            text-align: center;
-            padding: 3rem 1rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .pull-quote::before {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 1px;
-            background: var(--accent);
-            margin: 0 auto 1.5rem;
-        }
-
-        .pull-quote::after {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 1px;
-            background: var(--accent);
-            margin: 1.5rem auto 0;
-        }
-
-        .section-dark .pull-quote { color: var(--text-light); }
-        .section-light .pull-quote { color: var(--text-dark); }
-
-        /* Accent text */
         .accent { color: var(--accent); }
 
-        /* Spacer between story beats */
-        .beat-break {
-            display: flex;
-            justify-content: center;
-            padding: 1.5rem 0;
-            gap: 0.5rem;
-        }
+        /* Beat break */
+        .beat { display: flex; justify-content: center; padding: 1.25rem 0; gap: 0.5rem; }
+        .beat span { width: 3px; height: 3px; border-radius: 50%; }
+        .s-dark .beat span, .s-dark-warm .beat span { background: var(--accent-dim); }
+        .s-light .beat span { background: var(--text-dark-dim); opacity: 0.3; }
 
-        .beat-break span {
-            width: 3px; height: 3px;
-            border-radius: 50%;
-        }
+        /* CTA Buttons */
+        .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.9rem 2rem; background: var(--accent); color: var(--bg-dark); border: 1px solid var(--accent); border-radius: 4px; cursor: pointer; transition: all 0.4s; font-weight: 600; text-decoration: none; }
+        .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(196,154,108,0.2); }
+        .btn-primary .arr { transition: transform 0.3s; }
+        .btn-primary:hover .arr { transform: translateX(3px); }
 
-        .section-dark .beat-break span,
-        .section-dark-warm .beat-break span { background: var(--accent-dim); }
-        .section-light .beat-break span { background: var(--text-dark-dim); opacity: 0.3; }
+        .btn-outline { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; transition: all 0.4s; text-decoration: none; }
+        .s-dark .btn-outline { color: var(--accent); border: 1px solid rgba(196,154,108,0.25); }
+        .s-dark .btn-outline:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
+        .s-light .btn-outline { color: var(--text-dark); border: 1px solid rgba(26,23,20,0.15); }
+        .s-light .btn-outline:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
 
-        /* ============================================
+        .btn-subtle { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid rgba(155,145,138,0.25); padding-bottom: 2px; transition: all 0.3s; }
+        .btn-subtle:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* =============================================
+           HERO
+           ============================================= */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; opacity: 0.5; }
+        .hero-rule { width: 40px; height: 1px; background: var(--accent); margin-bottom: 1.75rem; opacity: 0; animation: ruleIn 1s ease 0.3s forwards; }
+        .hero-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s ease 0.5s forwards; }
+        .hero h1 { font-family: var(--serif); font-size: clamp(2.25rem, 5.5vw, 4.5rem); font-weight: 500; line-height: 1.15; max-width: 780px; margin-bottom: 1.75rem; color: var(--text-light); opacity: 0; animation: fadeUp 1s ease 0.7s forwards; }
+        .hero h1 em { font-style: italic; color: var(--accent); }
+        .hero-sub { font-size: 1.05rem; color: var(--text-light-dim); max-width: 520px; line-height: 1.8; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s ease 1s forwards; }
+        .hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; }
+        .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: fadeUp 0.8s ease 1.5s forwards; }
+        .hero-scroll span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light-dim); }
+        .hero-scroll .line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s ease infinite; }
+
+        @keyframes scrollPulse { 0%,100% { opacity: 0.3; transform: scaleY(0.6); } 50% { opacity: 1; transform: scaleY(1); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes ruleIn { from { opacity: 0; width: 0; } to { opacity: 1; width: 40px; } }
+
+        /* =============================================
+           TRUST STRIP
+           ============================================= */
+        .trust-strip { border-top: 1px solid rgba(196,154,108,0.06); border-bottom: 1px solid rgba(196,154,108,0.06); padding: 1.5rem 2rem; text-align: center; }
+        .trust-strip p { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light-dim); }
+        .trust-strip strong { color: var(--accent); font-weight: 500; }
+
+        /* =============================================
            STATS BAND
-           ============================================ */
-        .stats-band {
-            background: linear-gradient(135deg, #1A1510, #201812);
-            border-top: 1px solid rgba(196, 154, 108, 0.1);
-            border-bottom: 1px solid rgba(196, 154, 108, 0.1);
-        }
+           ============================================= */
+        .stats-band { border-top: 1px solid rgba(196,154,108,0.1); border-bottom: 1px solid rgba(196,154,108,0.1); }
+        .stats-inner { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+        .stat-item { position: relative; }
+        .stat-item:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; height: 60%; width: 1px; background: rgba(196,154,108,0.15); }
+        .stat-num { font-family: var(--mono); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 600; color: var(--accent); margin-bottom: 0.4rem; }
+        .stat-lbl { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light-dim); line-height: 1.5; }
 
-        .stats-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4.5rem 2rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 20%;
-            height: 60%;
-            width: 1px;
-            background: rgba(196, 154, 108, 0.15);
-        }
-
-        .stat-number {
-            font-family: var(--font-mono);
-            font-size: clamp(2rem, 3.5vw, 2.75rem);
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-light-dim);
-            line-height: 1.5;
-        }
-
-        /* ============================================
+        /* =============================================
            LENS CARDS
-           ============================================ */
-        .lens-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .lens-card {
-            padding: 2.5rem 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(26, 23, 20, 0.08);
-            background: rgba(255, 255, 255, 0.5);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .lens-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
+           ============================================= */
+        .lens-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+        .lens-card { padding: 2.25rem 1.75rem; border-radius: 8px; border: 1px solid rgba(26,23,20,0.08); background: rgba(255,255,255,0.5); transition: all 0.4s; position: relative; overflow: hidden; }
+        .lens-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.5s; }
         .lens-card:hover::before { transform: scaleX(1); }
+        .lens-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(26,23,20,0.08); }
+        .lens-pct { font-family: var(--mono); font-size: 2.25rem; font-weight: 700; color: var(--accent); margin-bottom: 0.2rem; }
+        .lens-type { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--text-dark); margin-bottom: 0.75rem; }
+        .lens-desc { font-size: 0.92rem; line-height: 1.7; color: var(--text-dark-dim); }
 
-        .lens-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(26, 23, 20, 0.08);
-        }
+        /* =============================================
+           PILLARS (Advantage)
+           ============================================= */
+        .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+        .pillar { padding: 2rem 1.75rem; border: 1px solid rgba(196,154,108,0.08); border-radius: 8px; transition: all 0.4s; }
+        .pillar:hover { border-color: rgba(196,154,108,0.2); transform: translateY(-3px); }
+        .pillar-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--accent-dim); margin-bottom: 0.75rem; }
+        .pillar-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--text-light); margin-bottom: 0.75rem; }
+        .pillar-text { font-size: 0.92rem; line-height: 1.75; color: var(--text-light-dim); }
 
-        .lens-pct {
-            font-family: var(--font-mono);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0.25rem;
-        }
+        /* =============================================
+           CTA BREAK BAND
+           ============================================= */
+        .cta-break { padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(196,154,108,0.1); border-bottom: 1px solid rgba(196,154,108,0.1); }
+        .cta-break-text { font-family: var(--serif); font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 400; font-style: italic; color: var(--text-light); margin-bottom: 1.75rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+        .cta-break-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
-        .lens-type {
-            font-family: var(--font-serif);
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
+        /* =============================================
+           AI LIST
+           ============================================= */
+        .ai-list { margin: 1.75rem 0; display: flex; flex-direction: column; gap: 0.9rem; }
+        .ai-item { display: flex; gap: 0.9rem; align-items: flex-start; font-size: 1rem; line-height: 1.7; color: var(--text-dark-dim); }
+        .ai-item .x-mark { flex-shrink: 0; font-family: var(--mono); font-size: 0.8rem; color: var(--red); margin-top: 0.25rem; }
+        .ai-flip { background: rgba(196,154,108,0.06); border: 1px solid rgba(196,154,108,0.12); border-radius: 8px; padding: 2rem 1.75rem; margin-top: 2rem; }
+        .ai-flip-lbl { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+        .ai-flip p { font-size: 1rem; line-height: 1.85; color: var(--text-dark-dim); }
+        .ai-flip p strong { color: var(--text-dark); font-weight: 500; }
 
-        .lens-desc {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--text-dark-dim);
-        }
+        /* =============================================
+           BEFORE / AFTER
+           ============================================= */
+        .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+        .ba-col { padding: 2rem 1.75rem; border-radius: 8px; }
+        .ba-before { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+        .ba-after { background: rgba(196,154,108,0.06); border: 1px solid rgba(196,154,108,0.12); }
+        .ba-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; }
+        .ba-before .ba-label { color: var(--text-light-dim); }
+        .ba-after .ba-label { color: var(--accent); }
+        .ba-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+        .ba-list li { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.95rem; line-height: 1.6; color: var(--text-light-dim); }
+        .ba-list .icon { flex-shrink: 0; font-size: 0.75rem; margin-top: 0.3rem; }
+        .ba-before .icon { color: var(--red); }
+        .ba-after .icon { color: var(--green); }
+        .ba-after li { color: var(--text-light); }
 
-        /* ============================================
-           COMMUNITY LIST
-           ============================================ */
-        .community-points {
-            margin: 2.5rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
+        /* =============================================
+           POLARITY (For / Not For)
+           ============================================= */
+        .pol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+        .pol-col { padding: 2rem 1.75rem; border-radius: 8px; }
+        .pol-yes { background: var(--green-dim); border: 1px solid rgba(107,158,120,0.15); }
+        .pol-no { background: var(--red-dim); border: 1px solid rgba(192,121,107,0.15); }
+        .pol-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; }
+        .pol-yes .pol-label { color: var(--green); }
+        .pol-no .pol-label { color: var(--red); }
+        .pol-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+        .pol-list li { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.95rem; line-height: 1.6; }
+        .s-light .pol-list li { color: var(--text-dark-dim); }
+        .pol-list .icon { flex-shrink: 0; font-size: 0.75rem; margin-top: 0.3rem; }
+        .pol-yes .icon { color: var(--green); }
+        .pol-no .icon { color: var(--red); }
 
-        .community-point {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
+        /* =============================================
+           SOCIAL PROOF PLACEHOLDERS
+           ============================================= */
+        .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+        .proof-card { padding: 2rem 1.5rem; border: 1px dashed rgba(196,154,108,0.15); border-radius: 8px; text-align: center; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
+        .proof-card .proof-icon { font-size: 1.5rem; opacity: 0.3; }
+        .proof-card .proof-type { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-dim); }
+        .proof-card .proof-note { font-size: 0.8rem; color: var(--text-light-dim); opacity: 0.5; }
+        .proof-suggest { margin-top: 2rem; padding: 1.5rem; border: 1px solid rgba(196,154,108,0.08); border-radius: 8px; }
+        .proof-suggest-lbl { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 0.75rem; }
+        .proof-suggest ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .proof-suggest li { font-size: 0.8rem; color: var(--text-light-dim); padding: 0.35rem 0.75rem; border: 1px solid rgba(155,145,138,0.1); border-radius: 100px; }
 
-        .community-point .marker {
-            flex-shrink: 0;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
-            margin-top: 0.6rem;
-        }
+        /* =============================================
+           FAQ ACCORDION
+           ============================================= */
+        .faq-list { margin-top: 2rem; display: flex; flex-direction: column; }
+        .faq-item { border-bottom: 1px solid rgba(26,23,20,0.08); }
+        .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; cursor: pointer; transition: color 0.3s; gap: 1rem; }
+        .faq-q:hover { color: var(--accent); }
+        .faq-q h3 { font-family: var(--sans); font-size: 1rem; font-weight: 500; line-height: 1.5; color: var(--text-dark); transition: color 0.3s; }
+        .faq-q:hover h3 { color: var(--accent); }
+        .faq-q .faq-icon { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(26,23,20,0.1); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.8rem; color: var(--text-dark-dim); transition: all 0.3s; }
+        .faq-item.open .faq-icon { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.3s; }
+        .faq-item.open .faq-a { max-height: 600px; }
+        .faq-a-inner { padding: 0 0 1.5rem; font-size: 0.95rem; line-height: 1.8; color: var(--text-dark-dim); }
 
-        .community-point p {
-            font-size: 1.05rem;
-            line-height: 1.75;
-            color: var(--text-light-dim);
-        }
+        /* =============================================
+           LEAD CAPTURE
+           ============================================= */
+        .lead-box { max-width: 560px; margin: 0 auto; text-align: center; padding: 3rem 2rem; border: 1px solid rgba(196,154,108,0.1); border-radius: 8px; background: rgba(196,154,108,0.03); }
+        .lead-box h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; color: var(--text-light); margin-bottom: 0.5rem; }
+        .lead-box p { font-size: 0.92rem; color: var(--text-light-dim); margin-bottom: 1.5rem; line-height: 1.7; }
+        .lead-form { display: flex; gap: 0.5rem; max-width: 400px; margin: 0 auto; }
+        .lead-form input { flex: 1; font-family: var(--sans); font-size: 0.85rem; padding: 0.7rem 1rem; border: 1px solid rgba(196,154,108,0.2); border-radius: 4px; background: rgba(255,255,255,0.03); color: var(--text-light); outline: none; transition: border-color 0.3s; }
+        .lead-form input::placeholder { color: var(--text-light-dim); }
+        .lead-form input:focus { border-color: var(--accent); }
+        .lead-form button { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.7rem 1.25rem; background: var(--accent); color: var(--bg-dark); border: none; border-radius: 4px; cursor: pointer; transition: background 0.3s; font-weight: 600; }
+        .lead-form button:hover { background: var(--accent-hover); }
 
-        .community-point p strong {
-            color: var(--text-light);
-            font-weight: 500;
-        }
+        /* =============================================
+           DECISION / FINAL CTA
+           ============================================= */
+        .decision { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 2rem; position: relative; }
+        .decision::before { content: ''; position: absolute; bottom: 30%; left: 50%; transform: translate(-50%, 50%); width: 500px; height: 500px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; opacity: 0.4; }
+        .decision h2 { font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 500; margin-bottom: 2rem; line-height: 1.2; position: relative; z-index: 2; }
+        .decision-body { max-width: 520px; position: relative; z-index: 2; }
+        .decision-body p { font-size: 1.05rem; line-height: 1.85; color: var(--text-light-dim); margin-bottom: 0.6rem; }
+        .decision-body p strong { color: var(--text-light); font-weight: 500; }
+        .decision-ctas { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; position: relative; z-index: 2; margin-top: 2.5rem; }
 
-        /* ============================================
-           AI SECTION — WHAT AI CAN'T DO
-           ============================================ */
-        .ai-list {
-            margin: 2rem 0 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        /* =============================================
+           DISCLAIMER
+           ============================================= */
+        .disclaimer { padding: 2rem; text-align: center; border-top: 1px solid rgba(196,154,108,0.06); }
+        .disclaimer p { font-size: 0.7rem; color: rgba(155,145,138,0.4); max-width: 600px; margin: 0 auto; line-height: 1.7; }
 
-        .ai-list-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--text-dark-dim);
-        }
-
-        .ai-list-item .x-mark {
-            flex-shrink: 0;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: #C0796B;
-            margin-top: 0.3rem;
-            opacity: 0.8;
-        }
-
-        .ai-flip {
-            background: rgba(196, 154, 108, 0.06);
-            border: 1px solid rgba(196, 154, 108, 0.12);
-            border-radius: 8px;
-            padding: 2.5rem 2rem;
-            margin-top: 2.5rem;
-        }
-
-        .ai-flip-label {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .ai-flip p {
-            font-size: 1.05rem;
-            line-height: 1.85;
-            color: var(--text-dark-dim);
-        }
-
-        .ai-flip p strong {
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        /* ============================================
-           DECISION / CTA SECTION
-           ============================================ */
-        .decision {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6rem 2rem;
-            position: relative;
-        }
-
-        .decision::before {
-            content: '';
-            position: absolute;
-            bottom: 30%;
-            left: 50%;
-            transform: translate(-50%, 50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0.4;
-        }
-
-        .decision h2 {
-            font-family: var(--font-serif);
-            font-size: clamp(2.25rem, 5vw, 4rem);
-            font-weight: 500;
-            margin-bottom: 2.5rem;
-            line-height: 1.2;
-        }
-
-        .decision-lines {
-            max-width: 520px;
-            margin-bottom: 3rem;
-        }
-
-        .decision-lines p {
-            font-size: 1.1rem;
-            line-height: 1.85;
-            color: var(--text-light-dim);
-            margin-bottom: 0.75rem;
-        }
-
-        .decision-lines p strong {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .cta-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .cta-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            padding: 1rem 2.5rem;
-            background: var(--accent);
-            color: var(--bg-dark);
-            border: 1px solid var(--accent);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .cta-primary:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(196, 154, 108, 0.2);
-        }
-
-        .cta-primary .arrow {
-            transition: transform 0.3s ease;
-        }
-
-        .cta-primary:hover .arrow {
-            transform: translateX(3px);
-        }
-
-        .cta-secondary {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-light-dim);
-            border-bottom: 1px solid rgba(155, 145, 138, 0.2);
-            padding-bottom: 2px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .cta-secondary:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-        }
-
-        /* Inline CTA (within sections) */
-        .inline-cta {
-            display: flex;
-            justify-content: center;
-            padding-top: 2rem;
-        }
-
-        .inline-cta a {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 0.75rem 1.75rem;
-            border-radius: 4px;
-            transition: all 0.4s ease;
-            text-decoration: none;
-        }
-
-        .section-dark .inline-cta a,
-        .section-dark-warm .inline-cta a {
-            color: var(--accent);
-            border: 1px solid rgba(196, 154, 108, 0.25);
-        }
-
-        .section-dark .inline-cta a:hover,
-        .section-dark-warm .inline-cta a:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-            border-color: var(--accent);
-        }
-
-        .section-light .inline-cta a {
-            color: var(--bg-dark);
-            background: var(--accent);
-            border: 1px solid var(--accent);
-        }
-
-        .section-light .inline-cta a:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(196, 154, 108, 0.2);
-        }
-
-        /* ============================================
+        /* =============================================
            FOOTER
-           ============================================ */
-        footer {
-            background: var(--bg-dark-deep);
-            border-top: 1px solid rgba(196, 154, 108, 0.06);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-inner {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-name {
-            font-family: var(--font-serif);
-            font-size: 1rem;
-            color: var(--text-light-dim);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-tagline {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent-dim);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-light-dim);
-            transition: color 0.3s;
-        }
-
+           ============================================= */
+        footer { background: var(--bg-dark-deep); border-top: 1px solid rgba(196,154,108,0.06); padding: 2.5rem 2rem; text-align: center; }
+        .footer-name { font-family: var(--serif); font-size: 0.95rem; color: var(--text-light-dim); margin-bottom: 0.3rem; }
+        .footer-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 1.25rem; }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+        .footer-links a { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light-dim); transition: color 0.3s; }
         .footer-links a:hover { color: var(--accent); }
+        .footer-copy { font-size: 0.7rem; color: rgba(155,145,138,0.35); }
 
-        .footer-copy {
-            font-size: 0.75rem;
-            color: rgba(155, 145, 138, 0.4);
-        }
+        /* Back to top */
+        .btt { position: fixed; bottom: 4.5rem; right: 2rem; width: 36px; height: 36px; border-radius: 50%; background: rgba(196,154,108,0.08); border: 1px solid rgba(196,154,108,0.15); color: var(--accent); cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(10px); transition: all 0.4s; z-index: 100; backdrop-filter: blur(10px); }
+        .btt.visible { opacity: 1; transform: translateY(0); }
+        .btt:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
 
-        /* ============================================
-           SECTION TRANSITIONS
-           ============================================ */
-        .section-edge-top {
-            position: relative;
-        }
-
-        .section-edge-top::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 120px;
-        }
-
-        .section-light.section-edge-top::before {
-            background: linear-gradient(to bottom, var(--bg-dark) 0%, var(--bg-light) 100%);
-        }
-
-        .section-dark.section-edge-top::before {
-            background: linear-gradient(to bottom, var(--bg-light) 0%, var(--bg-dark) 100%);
-        }
-
-        /* ============================================
-           SCROLL REVEAL ANIMATIONS
-           ============================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* ============================================
-           KEYFRAMES
-           ============================================ */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes ruleIn {
-            from { opacity: 0; width: 0; }
-            to { opacity: 1; width: 40px; }
-        }
-
-        /* ============================================
+        /* =============================================
            RESPONSIVE
-           ============================================ */
+           ============================================= */
         @media (max-width: 900px) {
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2.5rem 1.5rem;
-            }
-
-            .stat-item:nth-child(2)::after { display: none; }
-
+            .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
             .stat-item::after { display: none; }
-
-            .lens-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-
-            .chapter-nav { display: none; }
+            .lens-grid { grid-template-columns: 1fr; }
+            .pillars { grid-template-columns: 1fr; }
+            .ba-grid { grid-template-columns: 1fr; }
+            .pol-grid { grid-template-columns: 1fr; }
+            .proof-grid { grid-template-columns: 1fr; }
+            .ch-nav { display: none; }
         }
 
         @media (max-width: 600px) {
-            .content-narrow,
-            .content-wide {
-                padding: 5rem 1.5rem;
-            }
-
+            .narrow, .wide { padding: 4.5rem 1.5rem; }
             nav { padding: 1rem 1.25rem; }
             nav.scrolled { padding: 0.75rem 1.25rem; }
-
-            .nav-read-time { display: none; }
-
+            .nav-link { display: none; }
             .hero { padding: 5rem 1.5rem 3rem; }
-
-            .story-emphasis {
-                font-size: 1.15rem;
-                padding-left: 1.25rem;
-            }
-
-            .decision { padding: 5rem 1.5rem; min-height: 80vh; }
-
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 3rem 1.5rem;
-                gap: 2rem;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
+            .hero-ctas { flex-direction: column; }
+            .lead-form { flex-direction: column; }
+            .decision { min-height: 80vh; padding: 5rem 1.5rem; }
+            .stats-inner { padding: 3rem 1.5rem; }
+            .sticky-bar .bar-text { display: none; }
+            .footer-links { flex-direction: column; gap: 0.6rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- Film Grain -->
 <div class="grain"></div>
-
-<!-- Reading Progress -->
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- Chapter Navigation -->
-<div class="chapter-nav" id="chapterNav">
-    <a href="#ch-01" data-chapter="ch-01"><span class="dot"></span><span class="label">Origin</span></a>
-    <a href="#ch-02" data-chapter="ch-02"><span class="dot"></span><span class="label">The Grind</span></a>
-    <a href="#ch-03" data-chapter="ch-03"><span class="dot"></span><span class="label">The Turn</span></a>
-    <a href="#ch-04" data-chapter="ch-04"><span class="dot"></span><span class="label">The Lens</span></a>
-    <a href="#ch-05" data-chapter="ch-05"><span class="dot"></span><span class="label">Community</span></a>
-    <a href="#ch-06" data-chapter="ch-06"><span class="dot"></span><span class="label">AI & You</span></a>
+<!-- Chapter Nav -->
+<div class="ch-nav" id="chNav">
+    <a href="#story" data-ch="story"><span class="dot"></span><span class="lbl">Story</span></a>
+    <a href="#lens" data-ch="lens"><span class="dot"></span><span class="lbl">The Lens</span></a>
+    <a href="#advantage" data-ch="advantage"><span class="dot"></span><span class="lbl">Advantage</span></a>
+    <a href="#ai" data-ch="ai"><span class="dot"></span><span class="lbl">AI & You</span></a>
+    <a href="#polarity" data-ch="polarity"><span class="dot"></span><span class="lbl">For You?</span></a>
+    <a href="#faq" data-ch="faq"><span class="dot"></span><span class="lbl">FAQ</span></a>
 </div>
 
 <!-- Nav -->
 <nav id="mainNav">
     <a href="#" class="nav-name">Mike Davis</a>
     <div class="nav-right">
-        <span class="nav-read-time">8 min read</span>
-        <!-- UPDATE: Replace # with your SubTo referral link -->
-        <a href="#decision" class="nav-cta">Join SubTo</a>
+        <!-- UPDATE: Replace #book-call with your Calendly link -->
+        <a href="#book-call" class="nav-link">Talk to Mike</a>
+        <!-- UPDATE: Replace #join-subto with your branded affiliate link -->
+        <a href="#join-subto" class="nav-cta">Join SubTo</a>
     </div>
 </nav>
 
-<!-- ============================================
+<!-- =============================================
      HERO
-     ============================================ -->
-<section class="hero section-dark" id="hero">
+     ============================================= -->
+<section class="hero s-dark" id="hero">
     <div class="hero-rule"></div>
     <div class="hero-label">A letter on creative finance, community, and conviction</div>
     <h1>I Stopped Asking Permission to Build <em>Wealth</em></h1>
     <p class="hero-sub">
-        Four years ago, I bet everything on creative finance and a community of people who think
-        differently about deals. Here's what happened.
+        Four years ago, I bet everything on creative finance and a community of people
+        who think differently about deals. Here's what happened&mdash;and why I think
+        you should consider doing the same.
     </p>
+    <div class="hero-ctas">
+        <!-- UPDATE: Replace #join-subto with your branded affiliate link -->
+        <a href="#join-subto" class="btn-primary">Join SubTo With Mike <span class="arr">&rarr;</span></a>
+        <!-- UPDATE: Replace #book-call with your Calendly link -->
+        <a href="#book-call" class="btn-outline" style="color:var(--accent); border-color:rgba(196,154,108,0.25);">Book a Free Intro Call</a>
+    </div>
     <div class="hero-scroll">
         <span>Scroll</span>
         <div class="line"></div>
     </div>
 </section>
 
-<!-- ============================================
-     CHAPTER 01 — WHERE IT STARTED
-     ============================================ -->
-<section class="section-dark-warm" id="ch-01">
-    <div class="content-narrow">
-        <div class="chapter-label reveal">Chapter 01</div>
-        <h2 class="chapter-heading reveal reveal-delay-1">Where It Started</h2>
+<!-- Trust Strip -->
+<section class="trust-strip s-dark">
+    <p>SubTo is the <strong>largest creative finance community in the world</strong>. Here's why I've been inside for 4+ years.</p>
+</section>
 
-        <p class="story-p reveal reveal-delay-2">
+<!-- =============================================
+     MY STORY (Compact)
+     ============================================= -->
+<section class="s-dark-warm" id="story">
+    <div class="narrow">
+        <div class="ch-label reveal">My Story</div>
+        <h2 class="s-heading reveal reveal-d1">How I Got Here</h2>
+
+        <p class="sp reveal reveal-d2">
             In 2019, I was working finance sales in Beverly Hills. On paper, it looked good.
             In reality, I was spending <strong>three hours getting there and two and a half hours
-            getting back</strong>—every single day.
+            getting back</strong>&mdash;every single day. The money had a ceiling. The company had
+            problems. And I had this growing feeling that I was building someone else's dream on
+            someone else's timeline.
         </p>
 
-        <p class="story-p reveal">
-            The money had a ceiling. The company had problems. And I had this growing feeling
-            that I was building someone else's dream on someone else's timeline.
+        <div class="emph reveal">I refused to let anyone else dictate what I was worth.</div>
+
+        <p class="sp reveal">
+            So at the end of 2019, I walked away. Then 2020 happened. Pandemic, lockdowns,
+            the world shut down&mdash;and I went all in. YouTube University. Every course I could find.
+            Meetups over Zoom. I started wholesaling solo, grinding from scratch.
         </p>
 
-        <div class="story-emphasis reveal">
-            I refused to let anyone else dictate what I was worth.
-        </div>
-
-        <p class="story-p reveal">
-            So at the end of 2019, I walked away. Not with a plan. Not with a safety net.
-            Just with a conviction that I was done letting someone else decide my earning potential.
-        </p>
-    </div>
-</section>
-
-<!-- ============================================
-     CHAPTER 02 — THE LONELY ROAD
-     ============================================ -->
-<section class="section-light" id="ch-02">
-    <div class="content-narrow">
-        <div class="chapter-label reveal">Chapter 02</div>
-        <h2 class="chapter-heading reveal reveal-delay-1">The Lonely Road</h2>
-
-        <p class="story-p reveal reveal-delay-2">
-            Then 2020 happened. Pandemic. Lockdowns. The world shut down—and I went all in.
+        <p class="sp reveal">
+            <strong>It took me nine to ten months to close my first deal.</strong> Then came the
+            JV deal I thought would change everything. Projected to net around $40,000. I was
+            green, eager, and trusting. I walked away with <strong>$5,000</strong>. I got taken
+            advantage of&mdash;and I didn't even realize it until it was too late.
         </p>
 
-        <p class="story-p reveal">
-            YouTube University. Every course I could find. Meetups over Zoom. I started
-            wholesaling, grinding solo, trying to figure out real estate from scratch.
+        <div class="beat reveal"><span></span><span></span><span></span></div>
+
+        <p class="sp reveal">
+            That loss taught me more than any course ever did. I started studying creative
+            finance&mdash;not just wholesaling, not just flipping, but the actual <strong>structure
+            of deals</strong>. I found a seller, applied what I'd learned, and JV'd with someone
+            inside SubTo. I made <strong>$14,000</strong>.
         </p>
 
-        <p class="story-p reveal">
-            <strong>It took me nine to ten months to close my first deal.</strong>
-        </p>
-
-        <p class="story-p reveal">
-            Nine months of cold calls, dead ends, and learning the hard way that
-            information alone doesn't make you dangerous.
-        </p>
-
-        <div class="beat-break reveal">
-            <span></span><span></span><span></span>
-        </div>
-
-        <p class="story-p reveal">
-            Then came the JV deal I thought would change everything. Projected to net
-            around <strong>$40,000</strong>. I was green, eager, and trusting.
-        </p>
-
-        <p class="story-p reveal">
-            I walked away with <strong>$5,000</strong>.
-        </p>
-
-        <p class="story-p reveal">
-            Not because the deal was bad. Because I didn't have the experience, the
-            mentorship, or the network to protect what I'd built. I got taken advantage
-            of—and I didn't even realize it until it was too late.
-        </p>
-
-        <div class="story-emphasis reveal">
-            That loss taught me more than any course ever did.
-        </div>
-    </div>
-</section>
-
-<!-- ============================================
-     CHAPTER 03 — THE TURN
-     ============================================ -->
-<section class="section-dark" id="ch-03">
-    <div class="content-narrow">
-        <div class="chapter-label reveal">Chapter 03</div>
-        <h2 class="chapter-heading reveal reveal-delay-1">Then Everything Changed</h2>
-
-        <p class="story-p reveal reveal-delay-2">
-            I started studying creative finance—not just wholesaling, not just flipping,
-            but the actual <strong>structure of deals</strong>. Terms. Seller financing.
-            Subject-to. The mechanics that most people never learn because they're too
-            busy chasing assignments.
-        </p>
-
-        <p class="story-p reveal">
-            I found a seller. Applied what I'd learned. Closed the deal. Then I JV'd
-            with someone inside SubTo—a community I'd been watching from the outside—and
-            made <strong>$14,000</strong>.
-        </p>
-
-        <p class="story-p reveal">
-            More than the money, it was the clarity. For the first time, I wasn't guessing.
-            I had a framework. I had people around me who had done it before.
-        </p>
-
-        <div class="pull-quote reveal-scale">
+        <div class="pull reveal">
             I joined SubTo in December 2021.<br>
             <span class="accent">That was over four years ago.</span>
         </div>
 
-        <p class="story-p reveal">
-            Within a month or two, I'd earned back the cost of membership. Not through
-            some magic formula—but through proximity to people who were already doing
-            what I wanted to do.
+        <p class="sp reveal">
+            Within a month or two, I'd earned back the cost of membership. Not through some magic
+            formula&mdash;but through proximity to people who were already doing what I wanted to do.
         </p>
-
-        <div class="inline-cta reveal">
-            <!-- UPDATE: Replace # with your SubTo referral link -->
-            <a href="#decision">Ready to make your turn? &rarr;</a>
-        </div>
     </div>
 </section>
 
-<!-- ============================================
-     STATS BAND
-     ============================================ -->
-<section class="stats-band" id="stats">
+<!-- Stats Band -->
+<section class="s-accent stats-band" id="stats">
     <div class="stats-inner">
         <div class="stat-item reveal">
-            <div class="stat-number" data-target="4" data-suffix="+">0</div>
-            <div class="stat-label">Years Inside<br>SubTo</div>
+            <div class="stat-num" data-target="4" data-suffix="+">0</div>
+            <div class="stat-lbl">Years Inside<br>SubTo</div>
         </div>
-        <div class="stat-item reveal reveal-delay-1">
-            <div class="stat-number" data-target="2" data-suffix=" Mo.">0</div>
-            <div class="stat-label">To Earn Back<br>Membership Cost</div>
+        <div class="stat-item reveal reveal-d1">
+            <div class="stat-num" data-target="2" data-suffix=" Mo.">0</div>
+            <div class="stat-lbl">To Earn Back<br>Membership</div>
         </div>
-        <div class="stat-item reveal reveal-delay-2">
-            <div class="stat-number" data-target="100" data-suffix="s of K">0</div>
-            <div class="stat-label">Generated Across<br>Asset Classes</div>
+        <div class="stat-item reveal reveal-d2">
+            <div class="stat-num" data-target="100" data-suffix="s of K">0</div>
+            <div class="stat-lbl">Generated Across<br>Asset Classes</div>
         </div>
-        <div class="stat-item reveal reveal-delay-3">
-            <div class="stat-number" data-target="3" data-suffix="">0</div>
-            <div class="stat-label">Asset Classes<br>Mastered</div>
+        <div class="stat-item reveal reveal-d3">
+            <div class="stat-num" data-target="3" data-suffix="">0</div>
+            <div class="stat-lbl">Asset Classes<br>Mastered</div>
         </div>
     </div>
 </section>
 
-<!-- ============================================
-     CHAPTER 04 — THE LENS
-     ============================================ -->
-<section class="section-light" id="ch-04">
-    <div class="content-wide">
-        <div class="chapter-label reveal">Chapter 04</div>
-        <h2 class="chapter-heading reveal reveal-delay-1">Creative Finance Isn't an Asset Class.<br>It's a Lens.</h2>
+<!-- =============================================
+     THE LENS (50/20/30)
+     ============================================= -->
+<section class="s-light" id="lens">
+    <div class="wide">
+        <div class="ch-label reveal">The Framework</div>
+        <h2 class="s-heading reveal reveal-d1">Creative Finance Isn't an Asset Class. It's a Lens.</h2>
 
-        <div style="max-width: 680px;">
-            <p class="story-p reveal reveal-delay-2">
-                Here's what most people get wrong about creative finance.
-            </p>
-
-            <p class="story-p reveal">
-                They think it's a strategy. A technique. A hack for buying houses without banks.
-            </p>
-
-            <p class="story-p reveal">
-                <strong>It's not. It's a lens.</strong>
-            </p>
-
-            <p class="story-p reveal">
-                Creative finance is a way of looking at any asset—any deal—and asking:
-                <em>"What's the structure that makes this work for everyone?"</em>
+        <div style="max-width:680px;">
+            <p class="sp reveal reveal-d2">
+                Most people think creative finance is a strategy for buying houses without banks.
+                <strong>It's not. It's a lens.</strong> A way of looking at any asset&mdash;any
+                deal&mdash;and asking: <em>"What's the structure that makes this work for everyone?"</em>
             </p>
         </div>
 
@@ -1248,455 +538,634 @@
                 <p class="lens-desc">
                     The core. Subject-to, seller financing, wraps, creative acquisitions.
                     This is where the biggest opportunities live and where most of the
-                    community is focused. It's the foundation.
+                    community is focused.
                 </p>
             </div>
-            <div class="lens-card reveal reveal-delay-1">
+            <div class="lens-card reveal reveal-d1">
                 <div class="lens-pct">20%</div>
                 <div class="lens-type">Business</div>
                 <p class="lens-desc">
                     Same lens, different asset. Structuring business acquisitions, partnerships,
-                    and deals using creative terms. The framework applies wherever value exchanges
-                    hands.
+                    and deals using creative terms. The framework applies wherever value
+                    exchanges hands.
                 </p>
             </div>
-            <div class="lens-card reveal reveal-delay-2">
+            <div class="lens-card reveal reveal-d2">
                 <div class="lens-pct">30%</div>
                 <div class="lens-type">Vehicles</div>
                 <p class="lens-desc">
-                    My unique lane. I became known as "the SubTo car guy" — not because I love
-                    cars more than houses, but because I saw an entire market nobody was structuring
-                    deals in. Same method, untapped space.
+                    My unique lane. I became known as "the SubTo car guy"&mdash;not because I
+                    love cars more than houses, but because I saw a market nobody was structuring
+                    deals in.
                 </p>
             </div>
         </div>
 
-        <div style="max-width: 680px; margin-top: 3rem;">
-            <div class="story-emphasis reveal">
-                Terms Over Price. That's the operating system I built from everything I've
-                learned inside SubTo, applied across every asset class I touch.
+        <div style="max-width:680px; margin-top:2.5rem;">
+            <div class="emph reveal">
+                Terms Over Price. That's the operating system. But the method isn't the point&mdash;the thinking is.
             </div>
+        </div>
+    </div>
+</section>
 
-            <p class="story-p reveal">
-                But the method isn't the point. <strong>The thinking is.</strong>
+<!-- =============================================
+     THE INTANGIBLE ADVANTAGE
+     ============================================= -->
+<section class="s-dark" id="advantage">
+    <div class="wide">
+        <div class="ch-label reveal">The Intangible Advantage</div>
+        <h2 class="s-heading reveal reveal-d1">Content Is Everywhere. Community Isn't.</h2>
+
+        <div style="max-width:680px;">
+            <p class="sp reveal reveal-d2">
+                You can learn creative finance on YouTube. The information is out there. So why
+                would you pay to join a community? <strong>Because information isn't the bottleneck.
+                Proximity is.</strong>
             </p>
         </div>
-    </div>
-</section>
 
-<!-- ============================================
-     CHAPTER 05 — WHY COMMUNITY WINS
-     ============================================ -->
-<section class="section-dark" id="ch-05">
-    <div class="content-narrow">
-        <div class="chapter-label reveal">Chapter 05</div>
-        <h2 class="chapter-heading reveal reveal-delay-1">Content Is Everywhere.<br>Community Isn't.</h2>
-
-        <p class="story-p reveal reveal-delay-2">
-            You can learn creative finance on YouTube. Seriously. The information is out there.
-        </p>
-
-        <p class="story-p reveal">
-            So why would you pay to join a community?
-        </p>
-
-        <p class="story-p reveal">
-            <strong>Because information isn't the bottleneck. Proximity is.</strong>
-        </p>
-
-        <div class="community-points">
-            <div class="community-point reveal">
-                <span class="marker"></span>
-                <p>
-                    <strong>Partners send me deals</strong> I never would have found on my own.
-                    Not from marketing—from relationships.
+        <div class="pillars">
+            <div class="pillar reveal">
+                <div class="pillar-num">01</div>
+                <div class="pillar-title">Mindset Shift</div>
+                <p class="pillar-text">
+                    Stop thinking in price. Start thinking in terms, structure, and leverage.
+                    Inside SubTo, you're surrounded by people who see opportunity where others
+                    see obstacles. That rewires how you approach every deal.
                 </p>
             </div>
-            <div class="community-point reveal">
-                <span class="marker"></span>
-                <p>
-                    <strong>Conversations have saved me</strong> from six-figure mistakes.
-                    The kind of insight you can't get from a YouTube comment section.
+            <div class="pillar reveal reveal-d1">
+                <div class="pillar-num">02</div>
+                <div class="pillar-title">Proximity & Partnerships</div>
+                <p class="pillar-text">
+                    Partners send me deals I'd never find alone. Real deal flow, real
+                    introductions, real collaboration. The people around you determine
+                    the deals in front of you&mdash;that's not motivation, it's math.
                 </p>
             </div>
-            <div class="community-point reveal">
-                <span class="marker"></span>
-                <p>
-                    <strong>Reputation compounds</strong> over time. The more people know your
-                    work, the more deals find you. That only happens inside a room.
+            <div class="pillar reveal reveal-d2">
+                <div class="pillar-num">03</div>
+                <div class="pillar-title">Trust & Transparency</div>
+                <p class="pillar-text">
+                    Real relationships, real conversations. Members share their wins AND their
+                    mistakes openly. Conversations inside this room have saved me from six-figure
+                    errors I didn't see coming.
                 </p>
             </div>
-            <div class="community-point reveal">
-                <span class="marker"></span>
-                <p>
-                    <strong>Feedback loops accelerate everything.</strong> I learn from other
-                    people's wins and mistakes in real time—not on a 6-month delay.
+            <div class="pillar reveal reveal-d3">
+                <div class="pillar-num">04</div>
+                <div class="pillar-title">Reputation Compounds</div>
+                <p class="pillar-text">
+                    The more people know your work, the more deals find you. That only happens
+                    inside a room. You can't shortcut reputation. You build it through
+                    consistent action in front of the right people.
                 </p>
             </div>
         </div>
 
-        <div class="pull-quote reveal-scale">
-            You can't YouTube your way into someone's deal flow.
-            You can't Google your way into a partnership.
+        <div class="pull reveal" style="margin-top:2rem;">
+            You can't YouTube your way into someone's deal flow.<br>
+            You can't Google your way into a partnership.<br>
             You can't watch your way into a reputation.
         </div>
-
-        <p class="story-p reveal">
-            The people around you determine the deals in front of you. That's not a
-            motivational quote—<strong>it's math.</strong>
-        </p>
-
-        <div class="inline-cta reveal">
-            <!-- UPDATE: Replace # with your SubTo referral link -->
-            <a href="#decision">Get in the room &rarr;</a>
-        </div>
     </div>
 </section>
 
-<!-- ============================================
-     CHAPTER 06 — THE AI QUESTION
-     ============================================ -->
-<section class="section-light" id="ch-06">
-    <div class="content-narrow">
-        <div class="chapter-label reveal">Chapter 06</div>
-        <h2 class="chapter-heading reveal reveal-delay-1">Everyone's Asking the Wrong Question About AI</h2>
+<!-- CTA Break -->
+<section class="s-accent cta-break">
+    <div class="cta-break-text reveal">
+        "Proximity compresses time. Community multiplies tools.<br>
+        The question isn't whether you can afford to join&mdash;it's whether you can afford not to."
+    </div>
+    <div class="cta-break-btns reveal reveal-d1">
+        <!-- UPDATE: Replace #join-subto with your branded affiliate link -->
+        <a href="#join-subto" class="btn-primary">I'm Ready &mdash; Join SubTo <span class="arr">&rarr;</span></a>
+        <!-- UPDATE: Replace #book-call with your Calendly link -->
+        <a href="#book-call" class="btn-outline" style="color:var(--accent); border:1px solid rgba(196,154,108,0.25);">Still Have Questions? Let's Talk</a>
+    </div>
+</section>
 
-        <p class="story-p reveal reveal-delay-2">
+<!-- =============================================
+     AI REALITY CHECK
+     ============================================= -->
+<section class="s-light" id="ai">
+    <div class="narrow">
+        <div class="ch-label reveal">The AI Question</div>
+        <h2 class="s-heading reveal reveal-d1">Everyone's Asking the Wrong Question About AI</h2>
+
+        <p class="sp reveal reveal-d2">
             I hear it constantly: <em>"AI is replacing everything. How am I supposed to compete?"</em>
         </p>
-
-        <p class="story-p reveal">
-            <strong>Wrong question.</strong>
-        </p>
-
-        <p class="story-p reveal">
+        <p class="sp reveal"><strong>Wrong question.</strong></p>
+        <p class="sp reveal">
             AI is a tool. A powerful one. It can analyze deals, write contracts, build marketing
-            material, run systems—and it's only getting better.
+            material, run systems&mdash;and it's only getting better. But here's what AI cannot do:
         </p>
-
-        <p class="story-p reveal">But here's what AI cannot do:</p>
 
         <div class="ai-list">
-            <div class="ai-list-item reveal">
-                <span class="x-mark">&times;</span>
-                <p>Build trust with a seller sitting across from you at a kitchen table.</p>
-            </div>
-            <div class="ai-list-item reveal">
-                <span class="x-mark">&times;</span>
-                <p>Shake hands with a partner and mean it.</p>
-            </div>
-            <div class="ai-list-item reveal">
-                <span class="x-mark">&times;</span>
-                <p>Carry a reputation earned over years of doing right by people.</p>
-            </div>
-            <div class="ai-list-item reveal">
-                <span class="x-mark">&times;</span>
-                <p>Replace the human nuance of a negotiation where both sides need to feel heard.</p>
-            </div>
+            <div class="ai-item reveal"><span class="x-mark">&times;</span><p>Build trust with a seller sitting across from you at a kitchen table.</p></div>
+            <div class="ai-item reveal"><span class="x-mark">&times;</span><p>Shake hands with a partner and mean it.</p></div>
+            <div class="ai-item reveal"><span class="x-mark">&times;</span><p>Carry a reputation earned over years of doing right by people.</p></div>
+            <div class="ai-item reveal"><span class="x-mark">&times;</span><p>Replace the human nuance of a negotiation where both sides need to feel heard.</p></div>
         </div>
 
         <div class="ai-flip reveal">
-            <div class="ai-flip-label">Here's the flip</div>
+            <div class="ai-flip-lbl">Here's the flip</div>
             <p>
                 Within a strong community, <strong>AI becomes exponentially more powerful.</strong>
+                Shared prompts. Shared workflows. Shared deal structures. One person figures out
+                an AI workflow that saves 10 hours a week&mdash;and suddenly <strong>5,000 people
+                have it.</strong>
             </p>
-            <p style="margin-top: 1rem;">
-                Shared prompts. Shared workflows. Shared deal structures. Shared systems.
-                One person figures out an AI workflow that saves 10 hours a week—and suddenly
-                <strong>5,000 people have it.</strong>
-            </p>
-            <p style="margin-top: 1rem;">
-                That's not something you get alone. That's a network effect. And that's exactly
-                what's happening inside SubTo right now.
+            <p style="margin-top:0.75rem;">
+                That's a network effect you can't get alone. And that's exactly what's
+                happening inside SubTo right now.
             </p>
         </div>
     </div>
 </section>
 
-<!-- ============================================
-     THE DECISION — FINAL CTA
-     ============================================ -->
-<section class="decision section-dark" id="decision">
-    <div class="chapter-label reveal" style="position: relative; z-index: 2;">The Decision</div>
-    <h2 class="reveal reveal-delay-1" style="position: relative; z-index: 2;">You Already Know.</h2>
+<!-- =============================================
+     WHAT CHANGED (Before / After)
+     ============================================= -->
+<section class="s-dark" id="results">
+    <div class="wide">
+        <div class="ch-label reveal">What Changed</div>
+        <h2 class="s-heading reveal reveal-d1">Before SubTo vs. After SubTo</h2>
 
-    <div class="decision-lines reveal reveal-delay-2" style="position: relative; z-index: 2;">
+        <div style="max-width:680px;">
+            <p class="sp reveal reveal-d2">
+                I'm not going to promise you'll make a specific amount. Anyone who does is lying.
+                But here's the honest contrast of my experience&mdash;before and after joining:
+            </p>
+        </div>
+
+        <div class="ba-grid">
+            <div class="ba-col ba-before reveal">
+                <div class="ba-label">Before SubTo</div>
+                <ul class="ba-list">
+                    <li><span class="icon">&times;</span> 9&ndash;10 months to close first deal</li>
+                    <li><span class="icon">&times;</span> Got taken advantage of on a JV ($40K &rarr; $5K)</li>
+                    <li><span class="icon">&times;</span> No framework, no network, no leverage</li>
+                    <li><span class="icon">&times;</span> Solo grinding through YouTube University</li>
+                    <li><span class="icon">&times;</span> Making expensive mistakes with nobody to catch them</li>
+                    <li><span class="icon">&times;</span> Deals felt like guessing, not executing</li>
+                </ul>
+            </div>
+            <div class="ba-col ba-after reveal reveal-d1">
+                <div class="ba-label">After SubTo</div>
+                <ul class="ba-list">
+                    <li><span class="icon">&#10003;</span> Earned back membership cost in ~2 months</li>
+                    <li><span class="icon">&#10003;</span> Hundreds of thousands generated across 3 asset classes</li>
+                    <li><span class="icon">&#10003;</span> Real deal flow from real partnerships</li>
+                    <li><span class="icon">&#10003;</span> Framework that applies to RE, business, and vehicles</li>
+                    <li><span class="icon">&#10003;</span> Mistakes got cheaper (feedback before I blew it)</li>
+                    <li><span class="icon">&#10003;</span> Known as "the SubTo car guy"&mdash;found my lane</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="emph reveal" style="margin-top:2.5rem;">
+            Everything moved faster, the mistakes got cheaper, and the wins got bigger. Not because of magic&mdash;because of proximity.
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     WHO THIS IS FOR / NOT FOR
+     ============================================= -->
+<section class="s-light" id="polarity">
+    <div class="wide">
+        <div class="ch-label reveal">Real Talk</div>
+        <h2 class="s-heading reveal reveal-d1">This Isn't for Everyone. And That's the Point.</h2>
+
+        <div style="max-width:680px;">
+            <p class="sp reveal reveal-d2">
+                I'd rather be honest upfront than have you join and feel like it wasn't what
+                you expected. SubTo is powerful&mdash;but only if you show up.
+            </p>
+        </div>
+
+        <div class="pol-grid">
+            <div class="pol-col pol-yes reveal">
+                <div class="pol-label">This is for you if&hellip;</div>
+                <ul class="pol-list">
+                    <li><span class="icon">&#10003;</span> You're done consuming content and ready to execute</li>
+                    <li><span class="icon">&#10003;</span> You want proximity to people actually doing deals</li>
+                    <li><span class="icon">&#10003;</span> You're willing to invest in yourself and put in the work</li>
+                    <li><span class="icon">&#10003;</span> You want a framework, not just tactics</li>
+                    <li><span class="icon">&#10003;</span> You understand that relationships beat information</li>
+                    <li><span class="icon">&#10003;</span> You're thinking long-term, not chasing a quick flip</li>
+                </ul>
+            </div>
+            <div class="pol-col pol-no reveal reveal-d1">
+                <div class="pol-label">This is NOT for you if&hellip;</div>
+                <ul class="pol-list">
+                    <li><span class="icon">&times;</span> You're looking for a "get rich quick" scheme</li>
+                    <li><span class="icon">&times;</span> You're not willing to take consistent action</li>
+                    <li><span class="icon">&times;</span> You want someone else to do the work for you</li>
+                    <li><span class="icon">&times;</span> You think community is a waste of money</li>
+                    <li><span class="icon">&times;</span> You're not open to creative deal structures</li>
+                    <li><span class="icon">&times;</span> You want guaranteed results without effort</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     SOCIAL PROOF PLACEHOLDERS
+     ============================================= -->
+<section class="s-dark" id="proof">
+    <div class="wide">
+        <div class="ch-label reveal">Proof</div>
+        <h2 class="s-heading reveal reveal-d1">Don't Take My Word for It</h2>
+
+        <div class="proof-grid">
+            <div class="proof-card reveal">
+                <div class="proof-icon">&ldquo;</div>
+                <div class="proof-type">Testimonial</div>
+                <div class="proof-note">(Add student/partner testimonial here)</div>
+            </div>
+            <div class="proof-card reveal reveal-d1">
+                <div class="proof-icon">&ldquo;</div>
+                <div class="proof-type">Testimonial</div>
+                <div class="proof-note">(Add deal success story here)</div>
+            </div>
+            <div class="proof-card reveal reveal-d2">
+                <div class="proof-icon">&ldquo;</div>
+                <div class="proof-type">Testimonial</div>
+                <div class="proof-note">(Add community endorsement here)</div>
+            </div>
+        </div>
+
+        <div class="proof-suggest reveal">
+            <div class="proof-suggest-lbl">Suggested proof to add</div>
+            <ul>
+                <li>Screenshots of closed deals</li>
+                <li>Event / Summit photos</li>
+                <li>Community post screenshots</li>
+                <li>Podcast appearance clips</li>
+                <li>Partner shout-outs</li>
+                <li>Revenue milestone screenshots</li>
+                <li>Before/after stories</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     FAQ
+     ============================================= -->
+<section class="s-light" id="faq">
+    <div class="narrow" style="max-width:740px;">
+        <div class="ch-label reveal">Questions</div>
+        <h2 class="s-heading reveal reveal-d1">Frequently Asked</h2>
+
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>Is SubTo only for real estate?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    No. SubTo is a creative finance community. While real estate is the core&mdash;subject-to, seller financing, wraps, creative acquisitions&mdash;the framework applies far beyond houses. I personally apply the same principles to vehicles and business structures. Creative finance is a lens, not an asset class. You'll learn to think in terms, not just price, and that thinking applies everywhere.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>Is this worth it if I'm brand new?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Honestly? That's when it's worth the most. I spent almost a year grinding solo before I joined&mdash;nine months to my first deal, and I still got taken advantage of on it. If I'd had this community from day one, I would have compressed that timeline dramatically. You don't need experience to start. You need proximity to people who have it.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>What if I don't have the money right now?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    I get it. When I joined, it wasn't an easy decision financially. The cost of staying stuck is higher than the cost of getting in the room. I earned my membership back within the first two months. That said, if you truly can't afford it, focus on getting your first deal&mdash;then use that momentum to invest in yourself. Don't go into debt for a community. But don't let fear disguise itself as logic either.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>What if I'm worried about AI taking over?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Good&mdash;you're paying attention. But you're asking the wrong question. AI is a tool, not a replacement. It can't build trust, carry a reputation, or negotiate with nuance. What it CAN do is amplify everything you're already doing&mdash;especially inside a community. When one person builds an AI workflow, 5,000 people benefit. That's a network effect you can't get alone.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>Do I need to be into cars to benefit?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Not at all. Vehicles are my lane&mdash;I became known as "the SubTo car guy" because I saw an untapped market. But the community is primarily focused on real estate. You don't need to touch a car deal unless you want to. The principles I teach apply to any asset. Find your lane.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>How fast can I make my investment back?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    It depends entirely on you. I earned mine back in about two months. Some people do it faster. Some take longer. There are no guarantees&mdash;anyone who promises one is lying. What I can tell you is that the community puts opportunities in front of you that you wouldn't find alone. If you apply yourself, the math tends to work out.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>Can't I just learn this on YouTube for free?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    You can learn a lot for free. I did&mdash;for almost a year. The information is out there. But here's what YouTube can't give you: deal flow, partnerships, accountability, real-time feedback, and a reputation inside a room full of active operators. Information isn't the bottleneck. Proximity is.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>What makes SubTo different from other communities?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Real operators. Not people who made money teaching people to make money. The members inside SubTo are doing deals&mdash;real estate, businesses, vehicles. The education is built on live deal activity, not theory. And the culture is collaborative, not competitive. People share their wins AND their mistakes openly.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>What if I join and don't see results?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Results come from action, not membership. Joining SubTo doesn't guarantee anything&mdash;but it puts you in a position where results become significantly more likely. Show up, engage, take action, ask for help when you need it&mdash;the community meets you halfway. If you lurk and wait, nothing happens. That's true everywhere, not just here.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>Is this a course or a community?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    It's a community with education built in&mdash;not a course you take and forget. There's structured training, live calls, deal reviews, and mentorship. But the real value is the network. Courses expire. Community compounds.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>How does Mike specifically help if I join through him?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    I'm an active member and operator inside SubTo. When you join through me, you're getting a direct line to someone who's been inside for over four years across three asset classes. I share deal structures, frameworks, and introductions. I'm not a guru. I'm a practitioner who happens to teach. And if you want to talk first before making any decisions, you can book a free call with me&mdash;no pressure, no pitch.
+                </div></div>
+            </div>
+
+            <div class="faq-item reveal">
+                <div class="faq-q">
+                    <h3>What is creative finance, exactly?</h3>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner">
+                    Creative finance is structuring deals using terms&mdash;not just price. Instead of going to a bank for a traditional loan, you negotiate directly with the seller or business owner to create a structure that works for both sides. Subject-to existing financing, seller financing, wraps, lease options&mdash;these are all creative finance tools. It's how you acquire assets with less capital, more flexibility, and better positioning.
+                </div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     LEAD CAPTURE (Optional Funnel)
+     ============================================= -->
+<section class="s-dark" id="lead">
+    <div class="narrow" style="padding-top:4rem; padding-bottom:4rem;">
+        <div class="lead-box reveal">
+            <h3>Not Ready to Join Yet?</h3>
+            <p>
+                No pressure. Drop your email and I'll send you a breakdown of how I think
+                about creative finance deals&mdash;the framework, the math, the mindset.
+                Free. No spam. Just signal.
+            </p>
+            <!-- UPDATE: Wire this form to your email provider (ConvertKit, Mailchimp, etc.) -->
+            <form class="lead-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='SENT ✓'; this.querySelector('input').disabled=true;">
+                <input type="email" placeholder="Your email" required>
+                <button type="submit">Send It</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- =============================================
+     THE DECISION — FINAL CTA
+     ============================================= -->
+<section class="decision s-dark" id="decision">
+    <div class="ch-label reveal" style="position:relative;z-index:2;">The Decision</div>
+    <h2 class="reveal reveal-d1">You Already Know.</h2>
+
+    <div class="decision-body reveal reveal-d2">
         <p>You've watched the videos.</p>
         <p>You've consumed the content.</p>
         <p>You've thought about it more than once.</p>
         <p>You know what's missing isn't more information.</p>
-        <p><strong>It's proximity. It's structure. It's people who are actually doing this—not just talking about it.</strong></p>
+        <p><strong>It's proximity. It's structure. It's people who are actually doing this&mdash;not talking about it.</strong></p>
     </div>
 
-    <div style="max-width: 560px; margin-bottom: 3rem; position: relative; z-index: 2;">
-        <p class="story-p reveal reveal-delay-3" style="color: var(--text-light-dim); text-align: center;">
+    <div style="max-width:520px; position:relative; z-index:2; margin-top:1.5rem;">
+        <p class="sp reveal reveal-d3" style="color:var(--text-light-dim); text-align:center;">
             I'm not going to tell you SubTo is the only way. I figured things out on my own
-            for over a year before I joined. It's possible.
-        </p>
-        <p class="story-p reveal reveal-delay-4" style="color: var(--text-light-dim); text-align: center;">
-            But I'll tell you what changed for me: <strong>everything moved faster, the mistakes
-            got cheaper, and the wins got bigger.</strong>
+            for over a year before I joined. It's possible. But I'll tell you what changed for me:
+            <strong>everything moved faster, the mistakes got cheaper, and the wins got bigger.</strong>
         </p>
     </div>
 
-    <div class="story-emphasis reveal" style="text-align: center; border: none; padding: 0; margin-bottom: 3rem; font-size: 1.15rem; position: relative; z-index: 2;">
+    <div class="emph reveal reveal-d4" style="text-align:center; border:none; padding:0; margin: 1.5rem 0 2rem; font-size:1.1rem; position:relative; z-index:2;">
         If you're ready, I'd be honored to be the person who brings you in.
     </div>
 
-    <div class="cta-group reveal reveal-delay-2" style="position: relative; z-index: 2;">
-        <!-- UPDATE: Replace # with your SubTo referral link -->
-        <a href="#" class="cta-primary" id="mainCta">
-            Join SubTo With Mike <span class="arrow">&rarr;</span>
+    <div class="decision-ctas">
+        <!-- UPDATE: Replace #join-subto with your branded affiliate link -->
+        <a href="#join-subto" class="btn-primary" style="font-size:0.8rem; padding:1rem 2.5rem;">
+            Join SubTo With Mike <span class="arr">&rarr;</span>
         </a>
-        <!-- UPDATE: Replace # with a Calendly link or contact method -->
-        <a href="#" class="cta-secondary">Have questions? Let's talk</a>
+        <!-- UPDATE: Replace #book-call with your Calendly link -->
+        <a href="#book-call" class="btn-subtle" style="color:var(--text-light-dim);">Want to talk first? Book a free call</a>
     </div>
 </section>
 
-<!-- ============================================
-     FOOTER
-     ============================================ -->
+<!-- Disclaimer -->
+<div class="disclaimer s-dark">
+    <p>
+        Results vary based on individual effort, market conditions, and experience.
+        SubTo is a community, not a guarantee of income. Mike Davis is an independent
+        SubTo member sharing his personal experience. Nothing on this page constitutes
+        financial, legal, or investment advice.
+    </p>
+</div>
+
+<!-- Footer -->
 <footer>
-    <div class="footer-inner">
-        <div class="footer-name">Mike Davis</div>
-        <div class="footer-tagline">Creative Finance &middot; Structured Differently</div>
-        <div class="footer-links">
-            <a href="https://sellfi.io" target="_blank">SellFi</a>
-            <a href="https://topwheels.io" target="_blank">TOP Wheels</a>
-            <a href="https://www.youtube.com/@MikeDavis-SubTo" target="_blank">YouTube</a>
-            <a href="https://www.instagram.com/1mikedavis" target="_blank">Instagram</a>
-        </div>
-        <div class="footer-copy">&copy; 2026 Mike Davis. All rights reserved.</div>
+    <div class="footer-name">Mike Davis</div>
+    <div class="footer-tag">Creative Finance &middot; Structured Differently</div>
+    <div class="footer-links">
+        <a href="https://sellfi.io" target="_blank">SellFi</a>
+        <a href="https://topwheels.io" target="_blank">TOP Wheels</a>
+        <a href="https://www.youtube.com/@MikeDavis-SubTo" target="_blank">YouTube</a>
+        <a href="https://www.instagram.com/1mikedavis" target="_blank">Instagram</a>
+        <a href="https://www.tiktok.com/@1mikedavis" target="_blank">TikTok</a>
     </div>
+    <div class="footer-copy">&copy; 2026 Mike Davis &middot; Vivant Investments LLC. All rights reserved.</div>
 </footer>
 
+<!-- Sticky Bottom Bar -->
+<div class="sticky-bar" id="stickyBar">
+    <span class="bar-text">Ready to get in the room?</span>
+    <!-- UPDATE: Replace #join-subto with your branded affiliate link -->
+    <a href="#join-subto" class="bar-btn bar-primary">Join SubTo</a>
+    <!-- UPDATE: Replace #book-call with your Calendly link -->
+    <a href="#book-call" class="bar-btn bar-secondary">Talk to Mike</a>
+</div>
+
 <!-- Back to Top -->
-<button class="back-to-top" id="backToTop" aria-label="Back to top">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M8 13V3M8 3L3 8M8 3L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+<button class="btt" id="btt" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M8 3L3 8M8 3L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<style>
-    .back-to-top {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 40px; height: 40px;
-        border-radius: 50%;
-        background: rgba(196, 154, 108, 0.1);
-        border: 1px solid rgba(196, 154, 108, 0.2);
-        color: var(--accent);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.4s ease;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-    }
-
-    .back-to-top.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .back-to-top:hover {
-        background: var(--accent);
-        color: var(--bg-dark);
-        border-color: var(--accent);
-    }
-</style>
-
 <script>
-    // ============================================
-    // SCROLL REVEAL (IntersectionObserver)
-    // ============================================
-    const revealElements = document.querySelectorAll('.reveal, .reveal-scale');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-            }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
-    });
+    // Scroll Reveal
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    // Progress Bar
+    const pBar = document.getElementById('progressBar');
+    // Nav
+    const nav = document.getElementById('mainNav');
+    // Chapter Nav
+    const chNav = document.getElementById('chNav');
+    const chLinks = chNav.querySelectorAll('a');
+    const chapters = document.querySelectorAll('[id]');
+    const chIds = ['story','lens','advantage','ai','polarity','faq'];
+    // Sticky Bar
+    const sBar = document.getElementById('stickyBar');
+    // Back to top
+    const btt = document.getElementById('btt');
 
-    // ============================================
-    // READING PROGRESS BAR
-    // ============================================
-    const progressBar = document.getElementById('progressBar');
-
-    function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = (scrollTop / docHeight) * 100;
-        progressBar.style.width = progress + '%';
-    }
-
-    // ============================================
-    // NAV SCROLL EFFECT
-    // ============================================
-    const mainNav = document.getElementById('mainNav');
-
-    function updateNav() {
-        mainNav.classList.toggle('scrolled', window.scrollY > 80);
-    }
-
-    // ============================================
-    // CHAPTER NAV
-    // ============================================
-    const chapterNav = document.getElementById('chapterNav');
-    const chapterLinks = chapterNav.querySelectorAll('a');
-    const chapters = document.querySelectorAll('[id^="ch-"]');
-
-    function updateChapterNav() {
-        const scrollY = window.scrollY + window.innerHeight / 3;
-
-        // Show/hide chapter nav
-        chapterNav.classList.toggle('visible', window.scrollY > window.innerHeight * 0.6);
-
-        // Update active chapter
-        let activeId = '';
-        chapters.forEach(ch => {
-            if (ch.offsetTop <= scrollY) {
-                activeId = ch.id;
-            }
-        });
-
-        chapterLinks.forEach(link => {
-            link.classList.toggle('active', link.dataset.chapter === activeId);
-        });
-    }
-
-    // ============================================
-    // BACK TO TOP
-    // ============================================
-    const backToTop = document.getElementById('backToTop');
-
-    function updateBackToTop() {
-        backToTop.classList.toggle('visible', window.scrollY > window.innerHeight);
-    }
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ============================================
-    // COUNTER ANIMATION
-    // ============================================
-    const statNumbers = document.querySelectorAll('.stat-number');
-    let countersAnimated = false;
-
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !countersAnimated) {
-                countersAnimated = true;
-                animateCounters();
-            }
-        });
-    }, { threshold: 0.3 });
-
-    document.querySelector('.stats-band') && counterObserver.observe(document.querySelector('.stats-band'));
-
-    function animateCounters() {
-        statNumbers.forEach(el => {
-            const target = parseInt(el.dataset.target);
-            if (!target && target !== 0) return; // Skip non-numeric
-
-            const prefix = el.dataset.prefix || '';
-            const suffix = el.dataset.suffix || '';
-            const duration = 1500;
-            const start = performance.now();
-
-            function step(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-                const current = Math.round(target * eased);
-                el.textContent = prefix + current + suffix;
-
-                if (progress < 1) {
-                    requestAnimationFrame(step);
-                }
-            }
-
-            requestAnimationFrame(step);
-        });
-    }
-
-    // ============================================
-    // HERO PARALLAX
-    // ============================================
-    function updateParallax() {
-        const scrollY = window.scrollY;
-        const hero = document.querySelector('.hero');
-        if (scrollY < window.innerHeight) {
-            hero.style.transform = `translateY(${scrollY * 0.2}px)`;
-            hero.style.opacity = 1 - (scrollY / window.innerHeight) * 0.6;
-        }
-    }
-
-    // ============================================
-    // UNIFIED SCROLL HANDLER (throttled via rAF)
-    // ============================================
     let ticking = false;
-
     window.addEventListener('scroll', () => {
         if (!ticking) {
             requestAnimationFrame(() => {
-                updateProgress();
-                updateNav();
-                updateChapterNav();
-                updateBackToTop();
-                updateParallax();
+                const sT = window.scrollY;
+                const dH = document.documentElement.scrollHeight - window.innerHeight;
+
+                // Progress
+                pBar.style.width = (sT / dH * 100) + '%';
+
+                // Nav
+                nav.classList.toggle('scrolled', sT > 80);
+
+                // Chapter nav visibility
+                chNav.classList.toggle('visible', sT > window.innerHeight * 0.5);
+
+                // Active chapter
+                const scrollY = sT + window.innerHeight / 3;
+                let activeId = '';
+                chIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetTop <= scrollY) activeId = id;
+                });
+                chLinks.forEach(l => l.classList.toggle('active', l.dataset.ch === activeId));
+
+                // Sticky bar
+                sBar.classList.toggle('visible', sT > window.innerHeight && sT < dH - 400);
+
+                // Back to top
+                btt.classList.toggle('visible', sT > window.innerHeight);
+
+                // Hero parallax
+                if (sT < window.innerHeight) {
+                    const hero = document.querySelector('.hero');
+                    hero.style.transform = `translateY(${sT * 0.15}px)`;
+                    hero.style.opacity = 1 - (sT / window.innerHeight) * 0.5;
+                }
+
                 ticking = false;
             });
             ticking = true;
         }
     });
 
-    // ============================================
-    // LENS CARD 3D TILT
-    // ============================================
-    document.querySelectorAll('.lens-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            card.style.transform = `translateY(-4px) perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
-        });
+    // Back to top
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) perspective(600px) rotateY(0) rotateX(0)';
+    // FAQ Accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            const wasOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+            // Toggle clicked
+            if (!wasOpen) item.classList.add('open');
         });
     });
 
-    // ============================================
-    // SMOOTH SCROLL FOR ANCHOR LINKS
-    // ============================================
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', e => {
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Counter Animation
+    let counted = false;
+    const cObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting && !counted) {
+                counted = true;
+                document.querySelectorAll('.stat-num').forEach(el => {
+                    const target = parseInt(el.dataset.target);
+                    if (isNaN(target)) return;
+                    const suffix = el.dataset.suffix || '';
+                    const dur = 1500;
+                    const start = performance.now();
+                    (function step(now) {
+                        const p = Math.min((now - start) / dur, 1);
+                        const eased = 1 - Math.pow(1 - p, 3);
+                        el.textContent = Math.round(target * eased) + suffix;
+                        if (p < 1) requestAnimationFrame(step);
+                    })(performance.now());
+                });
             }
         });
+    }, { threshold: 0.3 });
+    const sb = document.querySelector('.stats-band');
+    if (sb) cObs.observe(sb);
+
+    // Lens card tilt
+    document.querySelectorAll('.lens-card').forEach(c => {
+        c.addEventListener('mousemove', e => {
+            const r = c.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            c.style.transform = `translateY(-4px) perspective(600px) rotateY(${x*5}deg) rotateX(${-y*5}deg)`;
+        });
+        c.addEventListener('mouseleave', () => { c.style.transform = ''; });
     });
 
-    // ============================================
-    // INIT
-    // ============================================
-    updateNav();
-    updateBackToTop();
-    updateChapterNav();
+    // Smooth scroll anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
 </script>
 
 </body>
